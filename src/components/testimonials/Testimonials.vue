@@ -2,7 +2,7 @@
 	<div class="background">
 		<section class="container">
 			<img
-				src="../../public/images/horses_stampede.jpg"
+				src="../../../public/images/horses_stampede.jpg"
 				alt="Stampede of horses"
 				class="cover-photo"
 			/>
@@ -10,6 +10,16 @@
 				<span class="inner">Testimonials</span>
 			</div>
 		</section>
+
+		<router-link :to="{name: 'testimonialCreate'}">
+			<b-button 
+				type="is-success" 
+				expanded
+			>
+				Add new testimonial
+			</b-button>
+		</router-link>
+
 		<div class="below-picture">
 			<section
 				v-for="(testimonial, index) in testimonials"
@@ -24,6 +34,13 @@
 							:icon="['fas', 'quote-left']"
 						/>
 					</span>
+					<router-link :to="{name: 'testimonialEdit', params: {id: testimonial.id}}">
+						<font-awesome-icon
+							tag="router-link"
+							size="1x"
+							:icon="['fas', 'pencil-alt']"
+						/>
+					</router-link>
 					<span class="text">
 						<p
 							v-for="(paragraph, index) in testimonial.paragraphs"
@@ -42,7 +59,7 @@
 </template>
 
 <script>
-import { getTestimonials } from "@/services/TestimonialService";
+import { getTestimonials } from "../../services/TestimonialService";
 
 export default {
 	data() {

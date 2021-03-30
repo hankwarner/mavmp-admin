@@ -7,7 +7,9 @@ import EmployeeCreate from "@/components/employees/EmployeeCreate";
 import Company from "@/components/Company";
 import ContactUs from "@/components/ContactUs";
 import RequestOffer from "@/components/RequestOffer";
-import Testimonials from "@/components/Testimonials";
+import Testimonials from "@/components/testimonials/Testimonials";
+import TestimonialEdit from "@/components/testimonials/TestimonialEdit";
+import TestimonialCreate from "@/components/testimonials/TestimonialCreate";
 
 Vue.use(Router);
 
@@ -47,8 +49,17 @@ export default new Router({
 			path: "/testimonials",
 			component: Testimonials,
 		},
+		{
+			path: "/testimonials/edit/:id",
+			component: TestimonialEdit,
+			name: "testimonialEdit",
+		},
+		{
+			path: "/testimonials/create",
+			component: TestimonialCreate,
+			name: "testimonialCreate",
+		},
 	],
-	mode: "history",
 	// Scroll to top of page when transitioning between components in the router view
 	scrollBehavior() {
 		return { x: 0, y: 0 };
