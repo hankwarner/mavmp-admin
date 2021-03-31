@@ -38,15 +38,13 @@
 					<span class="text">
 						<div class="bio-line">
 							<h2>{{ employee.name }}</h2>
-							<template v-if="isAdmin">
-								<router-link :to="{name: 'employeeEdit', params: {id: employee.id}}">
-									<font-awesome-icon
-										tag="router-link"
-										size="1x"
-										:icon="['fas', 'pencil-alt']"
-									/>
-								</router-link>
-							</template>
+							<router-link :to="{name: 'employeeEdit', params: {id: employee.id}}">
+								<font-awesome-icon
+									tag="router-link"
+									size="1x"
+									:icon="['fas', 'pencil-alt']"
+								/>
+							</router-link>
 						</div>
 						<h3>{{ employee.title }}</h3>
 						<h4>{{ employee.email }}</h4>
@@ -88,13 +86,13 @@ export default {
 		};
 	},
 
-	created() {
+	mounted() {
 		this.getEmployeeData();
 	},
 	// Rerenders employee data on edit
-	updated() {
-		this.getEmployeeData();
-	},
+	// updated() {
+	// 	this.getEmployeeData();
+	// },
 	methods: {
 		async getEmployeeData() {
 			try {

@@ -2,5 +2,7 @@
 	"appService.zipIgnorePattern": [
 		"node_modules{,/**}",
 		".vscode{,/**}"
-	]
+	],
+	"appService.defaultWebAppToDeploy": "/subscriptions/50dc012d-bf11-4887-9568-0a6340b023a3/resourceGroups/mavmp/providers/Microsoft.Web/sites/mavmp-admin",
+	"appService.deploySubpath": "."
 }

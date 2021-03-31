@@ -6,4 +6,19 @@ const getCompanyData = async () => {
     return companyResponse.data;
 }
 
-export { getCompanyData }
+const updateCompany = async (updatedCompany) => {
+    try {
+        let response = await Api().put('/company', updatedCompany);
+
+        if(response == 'Error'){
+            throw new Error('There was a problem saving the new data. Please try again.');
+        }
+
+        return response;
+
+    } catch (e) {
+        return e.message;
+    }
+}
+
+export { getCompanyData, updateCompany }

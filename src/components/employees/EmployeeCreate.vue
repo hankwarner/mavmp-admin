@@ -199,4 +199,15 @@ button {
     padding-right: 15%;
     padding-left: 15%;
 }
+
+@media only screen and (max-width: 40em) {
+    .edit-employee-container {
+        flex-direction: column;
+        margin-bottom: 22%;
+    }
+
+    .flex-container {
+        margin: 50% auto 15%;
+    }
+}
 </style>
