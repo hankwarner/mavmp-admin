@@ -4,7 +4,8 @@ import Landing from "@/components/Landing";
 import AboutUs from "@/components/employees/AboutUs";
 import EmployeeEdit from "@/components/employees/EmployeeEdit";
 import EmployeeCreate from "@/components/employees/EmployeeCreate";
-import Company from "@/components/Company";
+import Company from "@/components/company/Company";
+import CompanyEdit from "@/components/company/CompanyEdit";
 import ContactUs from "@/components/ContactUs";
 import RequestOffer from "@/components/RequestOffer";
 import Testimonials from "@/components/testimonials/Testimonials";
@@ -36,6 +37,11 @@ export default new Router({
 		{
 			path: "/company",
 			component: Company,
+		},
+		{
+			path: "/company/edit/:id",
+			component: CompanyEdit,
+			name: "companyEdit",
 		},
 		{
 			path: "/contact-us",

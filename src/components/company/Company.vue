@@ -8,13 +8,20 @@
             <div class="flex-container">
                 <span class="photo-container">
                     <img
-                        src="../../public/images/colorado-sun.jpg"
+                        src="../../../public/images/colorado-sun.jpg"
                         alt="Company photo"
                         class="company-photo"
                     />
                 </span>
 
                 <div class="individual-bio-container">
+                    <router-link :to="{name: 'companyEdit', params: {id: companyInfo.id}}">
+						<font-awesome-icon
+							tag="router-link"
+							size="2x"
+							:icon="['fas', 'pencil-alt']"
+						/>
+					</router-link>
                     <span class="my-text">
                         <h3>{{companyInfo.name}}</h3> <br>
                         <p>
@@ -34,7 +41,7 @@
 </template>
 
 <script>
-import { getCompanyData } from '@/services/CompanyService';
+import { getCompanyData } from '../../services/CompanyService';
 
 export default {
     data(){
@@ -78,7 +85,7 @@ export default {
 }
 
 a {
-    color: black;
+    color: white;
 }
 
 .linked-in-logo {
@@ -111,7 +118,7 @@ p {
 /* Desktop */
 @media only screen and (min-width: 64.063em){
     .background {
-        background-image: url('../../public/images/clocktower_side.jpg');
+        background-image: url('../../../public/images/clocktower_side.jpg');
     }
     
     .title-background {
@@ -185,7 +192,7 @@ p {
 /* iPad Pro */
 @media only screen and (min-width: 50.01em) and (max-width: 64em) {
     .background {
-        background-image: url('../../public/images/clocktower_vertical.jpg');
+        background-image: url('../../../public/images/clocktower_vertical.jpg');
         background-attachment: scroll;
         overflow: scroll;
         overflow-x: hidden;
@@ -278,7 +285,7 @@ p {
 /* Tablet */
 @media only screen and (min-width: 40.063em) and (max-width: 50em){
     .background {
-        background-image: url('../../public/images/clocktower_vertical.jpg');
+        background-image: url('../../../public/images/clocktower_vertical.jpg');
         background-attachment: scroll;
         overflow: scroll;
         overflow-x: hidden;
@@ -376,7 +383,7 @@ p {
 /* Mobile */
 @media only screen and (max-width: 40em){
     .background {
-        background-image: url('../../public/images/clocktower_vertical.jpg');
+        background-image: url('../../../public/images/clocktower_vertical.jpg');
         background-attachment: scroll;
         overflow: scroll;
         overflow-x: hidden;

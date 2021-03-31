@@ -1,38 +1,22 @@
 <template>
-  <div class="edit-testimonial-container">
+  <div class="edit-company-container">
     <span class="text">
       <b-field label="Name">
-        <b-input v-model="testimonial.name"></b-input>
+        <b-input v-model="company.name"></b-input>
       </b-field>
-      <b-field label="Testimonial">
+      <b-field label="LinkedIn URL">
+        <b-input v-model="company.linkedIn"></b-input>
+      </b-field>
+      <b-field label="Bio">
         <b-input
-          v-for="(paragraph, index) in testimonial.paragraphs"
-          :key="index"
-          v-model="testimonial.paragraphs[index]"
-          maxlength="2000"
+          v-model="company.bio"
+          maxlength="10000"
           type="textarea"
-        >
-        </b-input>
+        ></b-input>
       </b-field>
       <b-button
         v-if="!loadingForm"
-        @click="testimonial.paragraphs.pop()"
-        type="is-danger is-light"
-        expanded
-      >
-        Remove Paragraph
-      </b-button>
-      <b-button
-        v-if="!loadingForm"
-        @click="testimonial.paragraphs.push([])"
-        type="is-success"
-        expanded
-      >
-        Add New Paragraph
-      </b-button>
-      <b-button
-        v-if="!loadingForm"
-        @click="createNewTestimonial"
+        @click="updateCompany"
         type="is-success"
         expanded
       >
@@ -44,39 +28,56 @@
 </template>
 
 <script>
-import { createTestimonial } from "@/services/TestimonialService";
+import { getCompanyData, updateCompany } from "@/services/CompanyService";
 
 export default {
   data() {
     return {
-      testimonial: {
-        id: "",
+      company: {
+        id: this.$route.params.id,
         name: "",
-        paragraphs: [[""]],
+        bio: "",
+        linkedIn: "",
       },
       apiResponse: "",
-      loadingForm: false
+      loadingForm: false,
     };
   },
+  created() {
+    this.getCompanyInfo();
+  },
   methods: {
-    async createNewTestimonial() {
+    async getCompanyInfo() {
+      try {
+        this.loading = true;
+
+        let response = await getCompanyData();
+        this.company = response;
+      } catch (err) {
+        console.log(err);
+        this.error = err.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async updateCompany() {
       try {
         this.loadingForm = true;
 
-        let testimonialToCreate = this.testimonial;
+        let companyToUpdate = this.company;
 
-        this.testimonial.id = await createTestimonial(testimonialToCreate);
+        this.apiResponse = updateCompany(companyToUpdate);
 
-        this.$buefy.toast.open("Testimonial successfully created!");
+        this.$buefy.toast.open("Company info successfully updated!");
 
-        // Redirect to testimonials page
-        this.$router.push("/testimonials");
+        // Redirect to company page
+        this.$router.push("/company");
       } catch (e) {
         this.apiResponse = e.message;
       } finally {
         this.loadingForm = false;
       }
-    }
+    },
   },
 };
 </script>
@@ -89,7 +90,7 @@ export default {
   align-items: flex-end;
 }
 
-.edit-testimonial-container {
+.edit-company-container {
   display: flex;
   align-content: space-between;
   justify-content: space-between;
@@ -133,12 +134,11 @@ button {
   padding-bottom: 5%;
   padding-right: 15%;
   padding-left: 15%;
-  margin-top: 5%;
 }
 
 @media only screen and (max-width: 40em) {
-    .text {
-        margin: 30% 0;
-    }
+  .text {
+    margin: 30% 0;
+  }
 }
 </style>

@@ -177,4 +177,10 @@ button {
   padding-right: 15%;
   padding-left: 15%;
 }
+
+@media only screen and (max-width: 40em) {
+  .text {
+    margin: 30% 0;
+  }
+}
 </style>
